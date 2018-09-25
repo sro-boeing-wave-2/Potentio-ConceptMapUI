@@ -5,6 +5,7 @@ import { GraphComponent } from './graph/graph.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DialogDataExampleDialog} from './app.component';
 import {HttpModule} from '@angular/http';
+import * as d3 from "d3";
 import {
   MatCardModule,
   MatDialogModule,
