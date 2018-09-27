@@ -1,49 +1,9 @@
-#dialog {
-    width: 600px;
-    height: 200px;
-  }
-  
-  #close-button {
-    float: right;
-  }
-  #form {
-    width: 25%;
-    margin: 0 auto;
-  }
-  #select {
-    margin: auto;
-  }
-  
-  #input {
-    float: right;
-  }
-  
-  .QuestionText {
-    width: 100%;
-  }
-  
-  .fileDropTarget {
-    width: 100%;
-    height: 100%;
-    border: solid thin #1a1a1a;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .fileDropTargetfile:before {
-    content: "Drop files here or";
-    display: block;
-    text-align: center;
-    position: absolute;
-    left: 0;
-    top: 44.5%;
-    width: 100%;
-  }
-  
-  #CreateConceptMap{
-    float: right;
-    margin-top: 10px;
-  }
-  
+#CreateConceptMap {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-row {
+  text-align: center;
+}

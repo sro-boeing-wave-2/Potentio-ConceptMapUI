@@ -1,29 +1,7 @@
+
 <mat-toolbar color="primary">
     Concept Map
 </mat-toolbar>
-<mat-card>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>
-        <h1>CreateConceptMap</h1>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h4>To Create Concept Map Upload Concept Map csv File</h4>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="fileDropTarget">
-        <div>
-          <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
-            multiple id="inputAddFiles" />
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button id="CreateConceptMap" mat-raised-button color="accent" (click)="submit()">
-        Submit
-      </button>
-    </mat-card-actions>
-  </mat-card>
-<app-graph>
-</app-graph>
+<div>
+  <router-outlet></router-outlet>
+</div>

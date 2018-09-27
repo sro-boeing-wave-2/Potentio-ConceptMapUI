@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { GraphComponent } from './graph/graph.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DialogDataExampleDialog} from './app.component';
 import {HttpModule} from '@angular/http';
+import { AppRoutingModule } from './app-routing-module';
 import * as d3 from "d3";
 import {
   MatCardModule,
@@ -22,11 +22,12 @@ import {
   MatGridListModule,
   MatTableModule,
 } from '@angular/material';
+import { GraphComponent } from './graph/graph.component';
 @NgModule({
   declarations: [
     AppComponent,
-    GraphComponent,
     DialogDataExampleDialog,
+    GraphComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,10 +38,11 @@ import {
     MatIconModule ,
     MatCardModule,
     MatButtonModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogDataExampleDialog,GraphComponent]
+  entryComponents: [DialogDataExampleDialog]
 })
 export class AppModule { }
