@@ -1,0 +1,14 @@
+.cardbody{
+ position: relative;
+  margin-top: 10%;
+  width: 60%;
+  height: 60%;
+  margin-left: 20%
+}
+.card{
+  margin:0px;
+  background: -webkit-linear-gradient(left, #25c481, #25b7c4);
+  background: linear-gradient(to right, #25c481, #25b7c4);
+  height: 100%;
+  align-content: center;
+}

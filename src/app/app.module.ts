@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DialogDataExampleDialog} from './app.component';
 import {HttpModule} from '@angular/http';
-import { AppRoutingModule } from './app-routing-module';
 import * as d3 from "d3";
 import {
   MatCardModule,
@@ -22,12 +21,11 @@ import {
   MatGridListModule,
   MatTableModule,
 } from '@angular/material';
-import { GraphComponent } from './graph/graph.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DialogDataExampleDialog,
-    GraphComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,8 +36,7 @@ import { GraphComponent } from './graph/graph.component';
     MatIconModule ,
     MatCardModule,
     MatButtonModule,
-    HttpModule,
-    AppRoutingModule
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent],
