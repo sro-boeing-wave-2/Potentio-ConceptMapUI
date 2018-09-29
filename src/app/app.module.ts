@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DialogDataExampleDialog} from './app.component';
 import {HttpModule} from '@angular/http';
+import { MatStepperModule,  MatAutocompleteModule } from '@angular/material';
 import * as d3 from "d3";
 import {
   MatCardModule,
@@ -25,7 +25,6 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    DialogDataExampleDialog,
   ],
   imports: [
     BrowserModule,
@@ -36,10 +35,11 @@ import {
     MatIconModule ,
     MatCardModule,
     MatButtonModule,
-    HttpModule
+    HttpModule,
+    MatStepperModule,
+    MatAutocompleteModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [DialogDataExampleDialog]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

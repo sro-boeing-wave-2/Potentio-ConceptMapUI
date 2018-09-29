@@ -19,14 +19,26 @@ export class AppComponent {
   public node = [];
   public links = [];
   public graph = [];
+  isLinear = true;
+  node_data: Data = new Data();
+  public nodes = [];
+
   conceptmapdata: ConceptMapData = new ConceptMapData();
 
   constructor(public dialog: MatDialog, private graphservice: GraphService) { }
-  @Output() clicked = new EventEmitter<ConceptMapData>();
   submit() {
-    AppComponent.dialogRef = this.dialog.open(DialogDataExampleDialog, { width: '70%', height: '70%', data: this.conceptmapdata });
+    console.log(this.conceptmapdata);
+    var result;
 
+
+    this.graphservice.PostConceptMap(this.conceptmapdata).subscribe(x => {
+      console.log(x.status);
+      if (x.status == 201) {
+        this.graphservice.PostConceptMapInRabbitMq();
+      }
+    });
   }
+
   isCSVFile(file: any) {
     return file.name.endsWith(".csv");
   }
@@ -100,20 +112,26 @@ export class AppComponent {
     this.fileImportInput.nativeElement.value = "";
     this.csvRecords = [];
   }
-}
-@Component({
-  selector: 'create-concept-dialog',
-  templateUrl: 'createconceptmap.html',
-  styleUrls: ['createconceptmap.css']
-})
-export class DialogDataExampleDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ConceptMapData, private _graphService: GraphService,
-    public dialogforgraph: MatDialog) { }
-  node_data: Data = new Data();
-  public nodes = [];
-  public links = [];
-  ngOnInit() {
-    this.loadgraph();
+  getNodeData() {
+
+    this.conceptmapdata.Concepts.forEach(x => {
+      var C: n = new n();
+      C.id = x;
+
+      this.nodes.push(C);
+
+    });
+    this.conceptmapdata.Triplet.forEach(x => {
+      var l: linkData = new linkData();
+      l.source = x.Source.Name;
+      l.target = x.Target.Name;
+      l.label = x.Relationship.Name;
+      this.links.push(l);
+
+    });
+    this.node_data.nodes = this.nodes;
+    this.node_data.links = this.links;
+    return this.node_data;
   }
   loadgraph() {
     var data = this.getNodeData();
@@ -137,13 +155,13 @@ export class DialogDataExampleDialog {
       .append('line')
       .style("stroke", linkColour)
       .attr('stroke-width', 2);
-      function linkColour(d){
-        console.log(d);    
-        if(d.label == "SAME_AS"){
-            return "blue";
-        } else {
-            return "black";
-        }
+    function linkColour(d) {
+      console.log(d);
+      if (d.label == "SAME_AS") {
+        return "blue";
+      } else {
+        return "black";
+      }
     }
     var node = svg.append("g")
       .attr("class", "nodes")
@@ -166,7 +184,7 @@ export class DialogDataExampleDialog {
       .text(function (d) { return d.id });
 
 
-    
+
 
     simulation
       .nodes(data.nodes)
@@ -207,27 +225,6 @@ export class DialogDataExampleDialog {
     }
   }
 
-  getNodeData() {
-
-    this.data.Concepts.forEach(x => {
-      var C: n = new n();
-      C.id = x;
-
-      this.nodes.push(C);
-
-    });
-    this.data.Triplet.forEach(x => {
-      var l: linkData = new linkData();
-      l.source = x.Source.Name;
-      l.target = x.Target.Name;
-      l.label = x.Relationship.Name;
-      this.links.push(l);
-
-    });
-    this.node_data.nodes = this.nodes;
-    this.node_data.links = this.links;
-    return this.node_data;
-  }
 }
 
 
