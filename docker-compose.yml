@@ -3,4 +3,4 @@ services:
   angular: # name of the first service
     build: . # specify the directory of the Dockerfile
     labels:
-      - SERVICE_4200_NAME: 'ontology-manager'
+      - "SERVICE_4200_NAME=ontology-manager"
