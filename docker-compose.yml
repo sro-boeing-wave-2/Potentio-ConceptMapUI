@@ -2,5 +2,5 @@ version: '3'
 services:
   angular: # name of the first service
     build: . # specify the directory of the Dockerfile
-    ports:
-      - "4200:4200" # specify port forewarding
+    labels:
+      - SERVICE_4200_NAME: 'ontology-manager'

@@ -1,34 +1,4 @@
 <mat-toolbar color="primary">
   Ontology Manager
 </mat-toolbar>
-<mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Upload Concept Map File</ng-template>
-    <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
-      multiple id="inputAddFiles" />
-    <div>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Concept Map</ng-template>
-    <button (click)="loadgraph()">view your concepGraph</button>
-    <div>
-      <svg width="760" height="400"></svg>
-    </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Publish</ng-template>
-    Publish Your Concept Map.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="submit()">Publish</button>
-    </div>
-  </mat-step>
-  <mat-vertical-stepper>
+<router-outlet></router-outlet>
