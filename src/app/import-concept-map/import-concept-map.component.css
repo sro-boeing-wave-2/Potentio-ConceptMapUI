@@ -24,12 +24,32 @@ h3{
   text-shadow: 0.5px 0.5px gray;
 
 }
+h4{
+  text-shadow: 0.8px 0.8px gray;
+  margin-left: 30%;
+  font-size: 14px;
+  color: whitesmoke;
+
+}
 .fileupload{
   margin-top: 1.5%;
   font-size: 15px;
 }
-buttondiv{
-  margin-top: 5%;
+buttondiv
+{
+  margin-top:10%
+}
+p{
+  font-size: 14px;
+}
+.node.text{
+  font-size: 8px;
+}
+a{
+  margin-top: 3%;
+  text-decoration: none;
+  color: black;
+  background-color: #ffd633;
 }
 
 

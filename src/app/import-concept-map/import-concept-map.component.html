@@ -4,32 +4,46 @@
 <div class="stepperbody">
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step>
-      <ng-template matStepLabel ><h3>Upload Concept Map File</h3></ng-template>
+      <ng-template matStepLabel>
+        <h3>Upload Concept Map File</h3>
+      </ng-template>
+      <div>
+        <a href="../../assets/SampleConceptMap.csv">Download Sample Concept Map File </a>
+       
+      </div>
       <div class="fileupload">
-      <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
-        multiple id="inputAddFiles" />
-        </div>
-      <div class="buttondiv">
+        <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
+          multiple id="inputAddFiles" />
+      </div>
+
+      <div style="margin-top: 3%">
         <button mat-button matStepperNext mat-raised-button color="accent">Next</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel ><h3>Concept Map</h3></ng-template>
-      <button (click)="loadgraph()" mat-raised-button color="accent" >Click to view your ConcetMapGraph</button>
+      <ng-template matStepLabel>
+        <h3>Concept Map</h3>
+      </ng-template>
+      <button (click)="loadgraph()" mat-raised-button color="accent" style="margin-left: 40%">Click to view your ConcetMapGraph</button>
       <div>
-        <svg width="760" height="400"></svg>
+        <h4> Blue link represents SAME_AS and Black Link Represents SUBCONCEPT_OF</h4>
+        <svg width="760" height="400">
+
+        </svg>
       </div>
       <div>
         <button mat-button matStepperPrevious mat-raised-button color="accent">Back</button>
-        <button mat-button matStepperNext mat-raised-button color="accent">Next</button>
+        <button mat-button matStepperNext mat-raised-button color="accent" style="margin-left: 5%">Next</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel ><h3>Publish</h3></ng-template>
-      Publish Your Concept Map.
-      <div>
+      <ng-template matStepLabel>
+        <h3>Publish</h3>
+      </ng-template>
+      <p>Publish Your Concept Map.</p>
+      <div style="margin-top: 5%">
         <button mat-button matStepperPrevious mat-raised-button color="accent">Back</button>
-        <button mat-button (click)="submit()" mat-raised-button color="accent">Publish</button>
+        <button mat-button (click)="submit()" mat-raised-button color="accent" style="margin-left: 5%">Publish</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

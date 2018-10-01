@@ -1,6 +1,7 @@
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Component, Inject, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { GraphService } from '../graph.service';
+
 import * as d3 from 'd3';
 
 @Component({
@@ -70,9 +71,7 @@ export class ImportConceptMapComponent {
         csvRecord.Relationship.Name = data[3].trim();
         this.dataArr.push(csvRecord);
       }
-      else {
-        alert("Number of fields in  Concept Map {i} is not equal to number of fields in header");
-      }
+     
     }
     this.conceptmapdata.Triplet = this.dataArr;
     this.conceptmapdata.Domain = domain;
@@ -137,12 +136,11 @@ export class ImportConceptMapComponent {
     const svg = d3.select('svg');
     const width = +svg.attr('width');
     const height = +svg.attr('height');
-    const color = d3.scaleOrdinal(d3.schemeCategory20);
 
     const simulation = d3.forceSimulation()
       .force('link', d3.forceLink().id((d) => d.id))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force("charge", d3.forceManyBody().strength(-2000));
+      .force("charge", d3.forceManyBody().strength(-200));
 
 
 
