@@ -2,8 +2,35 @@
   box-shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 4px 5px 0 rgba(0,0,0,0.06), 0 1px 10px 0 rgba(0,0,0,0.08);
 }
 
-mat-vertical-stepper{
+mat-horizontal-stepper{
   margin:0px;
   background: -webkit-linear-gradient(left, #25c481, #25b7c4);
   background: linear-gradient(to right, #25c481, #25b7c4);
 }
+.header{
+  align-content: center;
+  margin-left: 33%;
+  
+}
+.stepperbody{
+  margin-top: 3%;
+}
+h1{
+  align-content:center;
+  font-size: 31px;
+  text-shadow: 1.5px 1.5px gray;
+}
+h3{
+  text-shadow: 0.5px 0.5px gray;
+
+}
+.fileupload{
+  margin-top: 1.5%;
+  font-size: 15px;
+}
+buttondiv{
+  margin-top: 5%;
+}
+
+
+

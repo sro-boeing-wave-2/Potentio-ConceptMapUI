@@ -1,31 +1,36 @@
-<mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step>
-    <ng-template matStepLabel>Upload Concept Map File</ng-template>
-    <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
-      multiple id="inputAddFiles" />
-    <div>
-      <div>
-        <button mat-button matStepperNext>Next</button>
+<div class="header">
+  <h1> Create Your ConceptMap</h1>
+</div>
+<div class="stepperbody">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step>
+      <ng-template matStepLabel ><h3>Upload Concept Map File</h3></ng-template>
+      <div class="fileupload">
+      <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListener($event)" accept=".csv"
+        multiple id="inputAddFiles" />
+        </div>
+      <div class="buttondiv">
+        <button mat-button matStepperNext mat-raised-button color="accent">Next</button>
       </div>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Concept Map</ng-template>
-    <button (click)="loadgraph()">view your concepGraph</button>
-    <div>
-      <svg width="760" height="400"></svg>
-    </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button matStepperNext>Next</button>
-    </div>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Publish</ng-template>
-    Publish Your Concept Map.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="submit()">Publish</button>
-    </div>
-  </mat-step>
-  <mat-vertical-stepper>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel ><h3>Concept Map</h3></ng-template>
+      <button (click)="loadgraph()" mat-raised-button color="accent" >Click to view your ConcetMapGraph</button>
+      <div>
+        <svg width="760" height="400"></svg>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious mat-raised-button color="accent">Back</button>
+        <button mat-button matStepperNext mat-raised-button color="accent">Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel ><h3>Publish</h3></ng-template>
+      Publish Your Concept Map.
+      <div>
+        <button mat-button matStepperPrevious mat-raised-button color="accent">Back</button>
+        <button mat-button (click)="submit()" mat-raised-button color="accent">Publish</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
