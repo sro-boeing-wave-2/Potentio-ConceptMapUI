@@ -3,6 +3,7 @@ import { Component, Inject, ViewChild, Input, Output, EventEmitter } from '@angu
 import { GraphService } from '../graph.service';
 
 import * as d3 from 'd3';
+import { version } from 'punycode';
 
 @Component({
   selector: 'import-concept-map',
@@ -14,6 +15,7 @@ export class ImportConceptMapComponent {
   @ViewChild('fileImportInput') fileImportInput: any;
   public csvRecords;
   public dataArr = [];
+  public contentArr=[];
   public Domain;
   public Version;
   public concepttags = [];
@@ -33,17 +35,15 @@ export class ImportConceptMapComponent {
 
     this.graphservice.PostConceptMap(this.conceptmapdata).subscribe(x => {
       console.log(x.status);
-      if (x.status == 201) {
-        this.graphservice.PostConceptMapInRabbitMq();
-      }
     });
+     
   }
 
   isCSVFile(file: any) {
     return file.name.endsWith(".csv");
   }
   getHeaderArray(csvRecordsArr: any) {
-    let headers = csvRecordsArr[0].split(',');
+    let headers = csvRecordsArr[2].split(',');
     let headerArray = [];
     for (let j = 0; j < headers.length; j++) {
       headerArray.push(headers[j]);
@@ -51,32 +51,57 @@ export class ImportConceptMapComponent {
     return headerArray;
   }
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {
-    for (let i = 1; i < csvRecordsArray.length; i++) {
+   var domain1=csvRecordsArray[0].trim();
+    var version1=csvRecordsArray[1].trim();
+    for (let i = 3; i < csvRecordsArray.length; i++) {
       let data = csvRecordsArray[i].split(',');
-      if (data.length == headerLength) {
-        var domain;
-        var version;
+     
+        console.log(data[0],data[1]);
         var csvRecord: ConceptMap = new ConceptMap();
+        var contentTripletforSourceConcept= new ContentTriplet();
+        var contentTripletforTargetConcept= new ContentTriplet();
         csvRecord.Source = { 'Domain': '', 'Name': '' };
         csvRecord.Target = { 'Domain': '', 'Name': '' };
+        contentTripletforSourceConcept.Target={ 'Domain': '', 'Name': '' };
+        contentTripletforSourceConcept.Source={ 'Title': '', 'Url': '' ,'Tags': []};
+        contentTripletforSourceConcept.Relationship={ 'Name': '', 'Taxonomy': '' };
+        contentTripletforTargetConcept.Target={ 'Domain': '', 'Name': '' };
+        contentTripletforTargetConcept.Source={ 'Title': '', 'Url': '' ,'Tags': []};
+        contentTripletforTargetConcept.Relationship={ 'Name': '', 'Taxonomy': '' };
         csvRecord.Relationship = { 'Name': '' };
-        csvRecord.Source.Domain = data[0].trim();
-        csvRecord.Source.Name = data[1].trim();
-        csvRecord.Target.Domain = data[0].trim();
-        domain = data[0].trim();
-        version = data[4].trim();
-        this.concepttags.push(data[1].trim());
-        this.concepttags.push(data[2].trim());
-        csvRecord.Target.Name = data[2].trim();
-        csvRecord.Relationship.Name = data[3].trim();
+        csvRecord.Source.Domain = domain1;
+        csvRecord.Source.Name = data[0].trim();
+        csvRecord.Target.Domain = domain1;
+        csvRecord.Target.Name = data[1].trim();      
+        this.concepttags.push(data[0].trim());
+        this.concepttags.push(data[1].trim());        
+        csvRecord.Relationship.Name = data[2].trim();
         this.dataArr.push(csvRecord);
-      }
+        contentTripletforSourceConcept.Source.Title=data[3].trim();
+        contentTripletforSourceConcept.Source.Url=data[4].trim();
+        contentTripletforSourceConcept.Source.Tags.push(data[11].trim());
+        contentTripletforSourceConcept.Relationship.Name=data[5].trim();
+        contentTripletforSourceConcept.Relationship.Taxonomy=data[6].trim();
+        contentTripletforSourceConcept.Target.Domain=domain1;
+        contentTripletforSourceConcept.Target.Name=data[0].trim();
+        contentTripletforTargetConcept.Source.Title=data[7].trim();
+        contentTripletforTargetConcept.Source.Url=data[8].trim();
+        contentTripletforTargetConcept.Source.Tags.push(data[12].trim());
+        contentTripletforTargetConcept.Relationship.Name=data[9].trim();
+        contentTripletforTargetConcept.Relationship.Taxonomy=data[10].trim();
+        contentTripletforTargetConcept.Target.Name=data[1].trim();
+        contentTripletforTargetConcept.Target.Domain=domain1;
+        this.contentArr.push(contentTripletforSourceConcept);
+        this.contentArr.push(contentTripletforTargetConcept);
+      
      
     }
+    this.conceptmapdata.Version=version1;
+    this.conceptmapdata.Domain=domain1;
     this.conceptmapdata.Triplet = this.dataArr;
-    this.conceptmapdata.Domain = domain;
-    this.conceptmapdata.Version = version;
     this.conceptmapdata.Concepts = this.concepttags.filter((v, i, a) => a.indexOf(v) === i);
+    this.conceptmapdata.contentConceptTriplet=this.contentArr;
+    console.log(this.conceptmapdata);
     return this.conceptmapdata;
   }
   fileChangeListener($event: any): void {
@@ -241,6 +266,7 @@ export class ConceptMapData {
   Domain: string;
   Triplet: ConceptMap[];
   Concepts: string[];
+  contentConceptTriplet:ContentTriplet[];
 }
 export class Data {
   nodes: n[];
@@ -253,4 +279,20 @@ export class linkData {
 }
 export class n {
   id: string;
+}
+export class Content{
+ Title:string;
+ Url :string;
+ Tags :string[];
+
+}
+export class ContentRelationship{
+  Name:string;
+  Taxonomy:string;
+}
+
+export class ContentTriplet{
+  Source:Content;
+  Target:Concept;
+  Relationship:ContentRelationship;
 }

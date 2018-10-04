@@ -1,8 +1,0 @@
-Domain,Source,Target,Predicate,Version
-JAVA,Operators,Varibles,SUBCONCEPT_OF,4.0
-JAVA,DataTypes,Varibles,SAME_AS,4.0
-JAVA,Encapsulation,OOPS,SUBCONCEPT_OF,4.0
-JAVA,Encapsulation,Abstraction,SAME_AS,4.0
-JAVA,JVM Fundamentals,Varibles,SAME_AS,4.0
-JAVA,DataTypes,Operators,SAME_AS,4.0
-JAVA,JVM Fundamentals,OOPS,SAME_AS,4.0

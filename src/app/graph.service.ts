@@ -11,10 +11,7 @@ export class GraphService {
    }
    PostConceptMap(ConceptMap){
   
-      return this.http.post("http://13.126.26.172/conceptmap/", ConceptMap);
+      return this.http.post("http://13.126.26.172/conceptmap", ConceptMap);
     }
-  PostConceptMapInRabbitMq(){
-    return this.http.post("http://13.126.26.172/questionbank/questionConceptMap", "");
   }
-   }
 
