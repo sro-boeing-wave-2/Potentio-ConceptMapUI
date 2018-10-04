@@ -178,10 +178,10 @@ export class ImportConceptMapComponent {
     const width = +svg.attr('width');
     const height = +svg.attr('height');
 
-    const simulation = d3.forceSimulation()
-      .force('link', d3.forceLink().id((d) => d.id))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .force("charge", d3.forceManyBody().strength(-200));
+    var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(150).strength(3))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
       function linkDistance(d) {
         return 200;
@@ -194,7 +194,7 @@ export class ImportConceptMapComponent {
       .enter()
       .append('line')
       .style("stroke", linkColour)
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 0.5);
     function linkColour(d) {
       console.log(d);
       if (d.label == "SAME_AS") {
@@ -215,12 +215,12 @@ export class ImportConceptMapComponent {
         .on("end", dragEnded));
 
     node.append("circle")
-      .attr("r", 8)
+      .attr("r", 10)
       .attr("fill", 'red');
 
     node.append("text")
       .attr("dx", 10)
-      .attr("dy", ".25em")
+      .attr("dy", ".15em")
       .text(function (d) { return d.id });
 
 
