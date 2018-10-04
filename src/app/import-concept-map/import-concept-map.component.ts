@@ -91,8 +91,24 @@ export class ImportConceptMapComponent {
         contentTripletforTargetConcept.Relationship.Taxonomy=data[10].trim();
         contentTripletforTargetConcept.Target.Name=data[1].trim();
         contentTripletforTargetConcept.Target.Domain=domain1;
+        var targetflag=true;
+        var sourceflag=true;
+        this.contentArr.forEach(x=>{
+          var ct:ContentTriplet;
+          ct=x;
+          if(ct.Target.Name == contentTripletforSourceConcept.Target.Name){
+            sourceflag=false;
+          }
+          if(ct.Target.Name == contentTripletforTargetConcept.Target.Name){
+            targetflag=false;
+          }
+        })
+        if(sourceflag){
         this.contentArr.push(contentTripletforSourceConcept);
+        }
+        if(targetflag){
         this.contentArr.push(contentTripletforTargetConcept);
+        }
       
      
     }
@@ -167,7 +183,9 @@ export class ImportConceptMapComponent {
       .force('center', d3.forceCenter(width / 2, height / 2))
       .force("charge", d3.forceManyBody().strength(-200));
 
-
+      function linkDistance(d) {
+        return 200;
+    }
 
     const link = svg.append('g')
       .attr('class', 'links')
@@ -217,14 +235,14 @@ export class ImportConceptMapComponent {
 
     function ticked() {
       link
-        .attr('x1', function (d) { return d['source'].x; })
-        .attr('y1', function (d) { return d['source'].y; })
+        .attr('x1', function (d) { return d['source'].x+100; })
+        .attr('y1', function (d) { return d['source'].y+100; })
         .attr('x2', function (d) { return d['target'].x; })
         .attr('y2', function (d) { return d['target'].y; });
 
       node
-        .attr('cx', function (d) { return d['x']; })
-        .attr('cy', function (d) { return d['y']; })
+        .attr('cx', function (d) { return d.x+100; })
+        .attr('cy', function (d) { return d.y+100; })
         .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; });
     }
 

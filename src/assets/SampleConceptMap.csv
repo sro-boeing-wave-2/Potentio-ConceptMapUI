@@ -1,4 +1,10 @@
-SCIENCE,//Add Domain Here
-1.1,//Add Version Of Concept Map Here
-Source,Target,Predicate,SourceContentTitle,SourceContentUrl,SourceContentRelationshipName,SourceContentRelationshipTaxonomy,TargetContentTitle,TargetContentUrl,TargetContentRelationship,TargetContentTaxonomy,SourceContentTags1,SourceContentTags2,TargetContentTags1,TargetContentTags1
-Electro Chemistry,Chemistry,SUBCONCEPT_OF,Beginner Course,https://www.khanacademy.org/science/chemistry,EXPLAIN,APPLY,Beginner Course,https://www.khanacademy.org/science/chemistry,EXPLAIN,APPLY,sourcetag1,TargetTag1
+C#
+1.1
+Source,Target,Predicate,SourceContentTitle,SourceContentUrl,SourceContentRelationshipName,SourceContentRelationshipTaxonomy,TargetContentTitle,TargetContentUrl,TargetContentRelationship,TargetContentTaxonomy,SourceContentTags1,TargetContentTags1
+DataTypes,Operators,SAME_AS,Beginer Course,https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Remember,Advance Course, https://www.c-sharpcorner.com/csharp-tutorials, Explains,Remember,C#,DataTypes
+DataTypes,Strings,SUBCONCEPT_OF,Beginer Course,https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Create,Advance Course, https://www.c-sharpcorner.com/csharp-tutorials, Explains,Remember,C#,DataTypes
+Classes and Objects,DataTypes,SUBCONCEPT_OF,Advance Course, https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Understand,Advance Course,  https://www.c-sharpcorner.com/csharp-tutorials,Explains,Remember,C#,Classes and Objects
+Strings,Characters,SAME_AS,Beginer Course, https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Apply,Beginer Course,  https://www.c-sharpcorner.com/csharp-tutorials,Explains,Understand,C#,Strings
+Loops,DataTypes,SAME_AS,Beginer Course, https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Remember,Beginer Course,  https://www.c-sharpcorner.com/csharp-tutorials,Explains,Understand,C#,Loops
+Operators,DataTypes,SAME_AS,Beginer Course, https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Remember,Beginer Course,  https://www.c-sharpcorner.com/csharp-tutorials,Explains,Understand,C#,Operators
+Loops,Operators,SAME_AS,Beginer Course, https://www.c-sharpcorner.com/csharp-tutorials,EXPLAINS,Understand,Beginer Course,  https://www.c-sharpcorner.com/csharp-tutorials,Explains,Create,C#,Loops
